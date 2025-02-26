@@ -1,14 +1,41 @@
 version: '3'
 services:
 
-  video-streaming:
+  video-streaming1:
     image: video-streaming
     build: 
       context: ./video-streaming
       dockerfile: Dockerfile
-    container_name: video-streaming
+    container_name: video-streaming1
     ports:
-     - "4000:80"
+     - "3001:3000"
     environment:
-      - PORT=80
+      - PORT=3000
+      - APPNAME=video1
+    restart: "no"
+
+  video-streaming2:
+    image: video-streaming
+    build: 
+      context: ./video-streaming
+      dockerfile: Dockerfile
+    container_name: video-streaming2
+    ports:
+     - "3002:3000"
+    environment:
+      - PORT=3000
+      - APPNAME=video2
+    restart: "no"
+
+  video-streaming3:
+    image: video-streaming
+    build: 
+      context: ./video-streaming
+      dockerfile: Dockerfile
+    container_name: video-streaming3
+    ports:
+     - "3003:3000"
+    environment:
+      - PORT=3000
+      - APPNAME=video3
     restart: "no"

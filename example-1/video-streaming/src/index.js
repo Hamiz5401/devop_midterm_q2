@@ -12,13 +12,14 @@ if (!process.env.PORT) {
 // Extracts environment variables to globals for convenience.
 //
 const PORT = process.env.PORT;
+const appname = process.env.APPNAME
 
 const app = express();
 
 //
 // Registers a HTTP GET route for video streaming.
 //
-app.get("/video", async (req, res) => {
+app.get("/", async (req, res) => {
     const videoPath = "./videos/SampleVideo_1280x720_1mb.mp4";
     const stats = await fs.promises.stat(videoPath);
 
@@ -27,11 +28,13 @@ app.get("/video", async (req, res) => {
         "Content-Type": "video/mp4",
     });
     fs.createReadStream(videoPath).pipe(res);
+
+    console.log(`Request served by ${appname}`);
 });
 
 //
 // Starts the HTTP server.
 //
 app.listen(PORT, () => {
-    console.log(`Microservice online`);
+    console.log(`Microservice online name ${appname} on ${PORT}`);
 });
